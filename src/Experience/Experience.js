@@ -1,10 +1,21 @@
+import * as THREE from 'three'
+
+import Camera from './Camera'
 import Sizes from './Utils/Sizes'
 import Time from './Utils/Time'
+
+let instance = null
 
 export default class Experience
 {
     constructor(canvas)
     {
+        if(instance)
+        {
+            return instance
+        }
+        instance = this
+
         // Global access
         window.experience = this
 
@@ -14,6 +25,8 @@ export default class Experience
         // Setup
         this.sizes = new Sizes()
         this.time = new Time()
+        this.scene = new THREE.Scene()
+        this.camera = new Camera()
 
         // Resize event
         this.sizes.on('resize', () =>
@@ -30,11 +43,11 @@ export default class Experience
 
     resize()
     {
-        // console.log(this.sizes)
+        this.camera.resize()
     }
 
     update()
     {
-        // console.log('tick')
+        this.camera.update()
     }
 }

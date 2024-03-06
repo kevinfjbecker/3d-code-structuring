@@ -1,11 +1,12 @@
 import * as THREE from 'three'
 
 import Camera from './Camera'
+import Debug from './Utils/Debug.js'
 import Renderer from './Renderer.js'
+import Resources from './Utils/Resources.js'
 import Sizes from './Utils/Sizes'
 import Time from './Utils/Time'
 import World from './World/World.js'
-import Resources from './Utils/Resources.js'
 
 import sources from './sources.js'
 
@@ -28,6 +29,7 @@ export default class Experience
         this.canvas = canvas
 
         // Setup
+        this.debug = new Debug()
         this.sizes = new Sizes()
         this.time = new Time()
         this.scene = new THREE.Scene()
